@@ -6,12 +6,12 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/07 08:29:33 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/07 08:39:26 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include <stdio.h>
 #include <pthread.h>
-
-
+#include <stdlib.h>
+#include <unistd.h>
