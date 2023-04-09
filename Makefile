@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/07 08:35:07 by llion            ###   ########.fr        #
+#    Updated: 2023/04/08 10:53:16 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
 SRC			= philo.c
-HEADERS		= -I include -lpthread
+HEADERS		= -I include -lpthread -D_REETRANT
 OBJ			= $(addprefix obj/,$(SRC:.c=.o))
 
 all:		$(NAME)
