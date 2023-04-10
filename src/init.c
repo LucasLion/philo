@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:43:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/10 11:57:12 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/10 17:37:49 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ int	check_digits(int argc, char **argv)
 	return (1);
 }
 
-int	init_play(t_philo *philo, int argc, char **argv)
+int	init_play(t_params *philo, int argc, char **argv)
 {
 	if (argc == 6)
-		philo->number_of_times_each_philosopher_must_eat = atoi(argv[5]);
+		philo->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	else
 		philo->number_of_times_each_philosopher_must_eat = 0;
 	if (argc == 5 || argc == 6)
 	{
-		philo->number_of_philosophers = atoi(argv[1]);
-		philo->time_to_die = atoi(argv[2]);
-		philo->time_to_eat = atoi(argv[3]);
-		philo->time_to_sleep = atoi(argv[4]);
+		philo->number_of_philosophers = ft_atoi(argv[1]);
+		philo->time_to_die = ft_atoi(argv[2]);
+		philo->time_to_eat = ft_atoi(argv[3]);
+		philo->time_to_sleep = ft_atoi(argv[4]);
 	}
 	else
 		return 0;
 	return (1);
 }
 
-int	initialization(t_philo *philo, int argc, char ** argv)
+int	initialization(t_params *philo, int argc, char ** argv)
 {
 	if (!(check_digits(argc, argv)))
 	{
