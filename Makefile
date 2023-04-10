@@ -6,16 +6,17 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/08 10:53:16 by llion            ###   ########.fr        #
+#    Updated: 2023/04/10 11:44:31 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME		= philo
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -ggdb3
 RM			= rm -rf
-SRC			= philo.c
+SRC			= philo.c	\
+			  init.c
 HEADERS		= -I include -lpthread -D_REETRANT
 OBJ			= $(addprefix obj/,$(SRC:.c=.o))
 
