@@ -5,46 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 16:25:32 by llion             #+#    #+#             */
-/*   Updated: 2023/04/10 17:48:07 by llion            ###   ########.fr       */
+/*   Created: 2043/24/06 43:43:43 by llion             #+#    #+#             */
+/*   Updated: 2023/04/11 16:57:07 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-typedef struct	s_philo
+t_philo	*create_philo(t_params *params, int id)
 {
-	int				id;
-	int				left_fork;
-	int				right_fork;
-	int				eat_count;
-	int				last_eat;
-	int				alive;
-	pthread_t		thread;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	*print;
-	pthread_mutex_t	*death;
-	pthread_mutex_t	*eat;
-}				t_philo;
+	t_philo	*philo;
 
-void	*eat(void *arg)
+	philo = malloc(sizeof(t_philo));
+	if (philo == NULL)
+		return (NULL);
+	philo->state = 1;
+	philo->id = id;
+	philo->time_to_eat = params->time_to_eat;
+	philo->time_to_sleep = params->time_to_sleep;
+	philo->time_to_die = params->time_to_die;
+	philo->thread = malloc(sizeof(pthread_t));
+	pthread_create(philo->thread, NULL, eating, philo);
+	pthread_join(*philo->thread, NULL);
+	pthread_create(philo->thread, NULL, sleeping, philo);
+	pthread_join(*philo->thread, NULL);
+	return (philo);
+}
+
+t_philo	*create_philos(t_params *params)
 {
-	printf("timestamp_in_ms X is eating \033[33m[OK]\033[0m\n");
-	sleep(1);
-	return (arg);
+	t_philo	*philos;
+	int		id;
+
+	id = 1;
+	philos = malloc(sizeof(t_philo) * params->number_of_philosophers + 1);
+	if (philos == NULL)
+		return (NULL);
+	while (params->number_of_philosophers)
+	{
+		philos = create_philo(params, id);
+		params->number_of_philosophers--;
+		id++;
+	}
+	return (philos);
 }
 
 int main(int argc, char **argv)
 {
-	t_params	*philo;
-	int		i;
+	t_params	*params;
 
-	i = 0;
-	philo = malloc(sizeof(t_params));
-	if (!initialization(philo, argc, argv))
+	params = malloc(sizeof(t_params));
+	if (!initialization(params, argc, argv))
 		return (-1);
-	while (i++ < 20)
-		eat(philo);
-	free(philo);
+	create_philos(params);
 	return (0);
 }
