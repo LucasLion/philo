@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 17:03:27 by llion             #+#    #+#              #
-#    Updated: 2023/04/11 18:26:40 by llion            ###   ########.fr        #
+#    Updated: 2023/04/11 18:31:10 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,28 +25,38 @@ parametres :
 
 - les philosophes sont assis cote a cote et numerotes dans l'ordre
 - proteger les fouchette pour ne pas les dupliquer
+- il faudra utiliser des mutex pour que les philosophes prennent les fourchettes a cote d'eux
+- les semaphores peuvent serive a  checker quun nombre maximum de philos mangent ou pensent par exemple
+
+- semaphores
+	- sem_t sem
+	- sem_init(&sem, 0(single or multiple proccesses, 1(init value -> nombre d'incr/decre possibles))
+	- sem_destroy(&sem)
+	- sem_wait(&sem) && sem_post(&sem) permet de faire comme les mutex
 
 ## A FAIRE
 
-- definir les differentes structures
-    - philosophe
-        - id
-        - id des fourchettes gauche droite
-        - etat
-        - nombre de fois qu'il a mange
-    - table
-        - nombre de philosophes assis
-        - tableau des philosophes
-        - tableau des fouchettes
-    - fouchette
-        - id
-        - etat (occupe ou non)
-    - parametres
-        - temps max de simulation
-        - nombre de philosophes a creer
-        - temps min de sommeil
-        - temps max de sommeil
-        - Le nombre de fois que chaque philosophe doit manger pour que la simulation se termine.
+
+### definir les differentes structures
+
+- philosophe
+	- id
+	- id des fourchettes gauche droite
+	- etat
+	- nombre de fois qu'il a mange
+- table
+	- nombre de philosophes assis
+	- tableau des philosophes
+	- tableau des fouchettes
+- fouchette
+	- id
+	- etat (occupe ou non)
+- parametres
+	- temps max de simulation
+	- nombre de philosophes a creer
+	- temps min de sommeil
+	- temps max de sommeil
+	- Le nombre de fois que chaque philosophe doit manger pour que la simulation se termine.
 
 - parametres
     - on peut recuper des arguments:
@@ -72,17 +82,9 @@ parametres :
     - creer une fonction pour recuperer l'id des fourchettes
     - initialiser le compte de repas a 0
 
-- il faudra utiliser des mutex pour que les philosophes prennent les fourchettes a cote d'eux
+### creation des threads
 
-- semaphores
-	- sem_t sem
-	- sem_init(&sem, 0(single or multiple proccesses, 1(init value -> nombre d'incr/decre possibles))
-	- sem_destroy(&sem)
-	- sem_wait(&sem) && sem_post(&sem) permet de faire comme les mutex
-
-- les semaphores peuvent serive a  checker quun nombre maximum de philos mangent ou pensent par exemple
--
-- lancer le multithreading des pilosophes
+- creer le multithreading des pilosophes
 	- ils doivent commencer par manger
 		- verifier que les fourchettes sont disponibles
 		- comment savoir combien de philosophes peuvent manger en meme temps?
