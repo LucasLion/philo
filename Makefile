@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/11 16:53:45 by llion            ###   ########.fr        #
+#    Updated: 2023/04/11 18:25:02 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,19 +30,23 @@ obj/%.o:	src/%.c
 
 $(NAME):	$(OBJ)
 	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -o $(NAME)
-	@printf "\033[32m[OK]\033[0m\t compiled\n"
+	@printf "\033[32m[OK]\033[0m\t\tcompiled\n"
 
 debug:		$(OBJ)
 	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -fsanitize=address -o $(NAME)
-	@printf "\033[31m[DB]\033[0m\t compiled\n"
+	@printf "\033[31m[DB]\033[0m\t\tcompiled\n"
+
+thread:		$(OBJ)
+	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -fsanitize=thread -o $(NAME)
+	@printf "\033[34m[TH]\033[0m\t\tcompiled\n"
 
 clean:
 	@$(RM) $(OBJ)
-	@printf "\033[32m[OK]\033[0m\t objects cleaned\n"
+	@printf "\033[32m[OK]\033[0m\t\tobjects cleaned\n"
 
 fclean:		clean
 	@$(RM) $(NAME)
-	@printf "\033[32m[OK]\033[0m\t $(NAME) cleaned\n"
+	@printf "\033[32m[OK]\033[0m\t\t$(NAME) cleaned\n"
 
 re:			fclean all
 
