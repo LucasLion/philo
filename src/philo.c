@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/12 15:53:28 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/12 16:12:30 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,18 @@ t_philo	**create_philos(int n, int id)
 		id++;
 		i++;
 	}
+	philos[i] = 0;
 	return (philos);
 }
 
-t_table	*create_table(t_params *p, t_table *t)
+t_table	*create_table(t_params *p)
 {
-	int		id;
-
-	id = 0;
+	t_table	*t;
+	int	id;
+	t = malloc(sizeof(t_table));
+	if (t == NULL)
+		return (NULL);
+	id = 1;
 	t->n_philos = p->number_of_philosophers;
 	t->philos = create_philos(t->n_philos, id);
 	t->forks = create_forks(p, id);
@@ -101,11 +105,7 @@ int main(int argc, char **argv)
 	params = malloc(sizeof(t_params));
 	if (!initialization(params, argc, argv))
 		return (-1);
-	table = malloc(sizeof(table));
-	if (table == NULL)
-		return (-1);
-	create_table(params, table);
-	//printf("idd: %d\n", table->philos[0]->id);
+	table = create_table(params);
 	print_table(table);
 	return (0);
 }

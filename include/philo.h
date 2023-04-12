@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/12 15:52:30 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/12 16:05:45 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct	s_philo
 
 typedef struct	s_fork
 {
-	int	id;
-	int	state;
+	int				id;
+	int				state;
 }				t_fork;
 
 typedef struct	s_table
