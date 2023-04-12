@@ -6,9 +6,15 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/11 18:25:02 by llion            ###   ########.fr        #
+#    Updated: 2023/04/12 15:11:04 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+NUM			= 5
+DIE			= 2
+EAT			= 3
+SLEEP		= 3
+TIMES		= 0
 
 
 NAME		= philo
@@ -18,6 +24,7 @@ RM			= rm -rf
 SRC			= philo.c	\
 			  ft_atoi.c	\
 			  actions.c	\
+			  utils.c	\
 			  init.c
 HEADERS		= -I include -lpthread -D_REETRANT
 OBJ			= $(addprefix obj/,$(SRC:.c=.o))
@@ -40,6 +47,8 @@ thread:		$(OBJ)
 	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -fsanitize=thread -o $(NAME)
 	@printf "\033[34m[TH]\033[0m\t\tcompiled\n"
 
+run:
+	@./$(NAME) $(NUM) $(DIE) $(EAT) $(SLEEP) $(TIMES)
 clean:
 	@$(RM) $(OBJ)
 	@printf "\033[32m[OK]\033[0m\t\tobjects cleaned\n"
