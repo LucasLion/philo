@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/12 15:11:04 by llion            ###   ########.fr        #
+#    Updated: 2023/04/12 16:28:52 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,11 @@ NAME		= philo
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -ggdb3
 RM			= rm -rf
-SRC			= philo.c	\
-			  ft_atoi.c	\
-			  actions.c	\
-			  utils.c	\
+SRC			= philo.c		\
+			  ft_atoi.c		\
+			  actions.c		\
+			  utils.c		\
+			  structures.c	\
 			  init.c
 HEADERS		= -I include -lpthread -D_REETRANT
 OBJ			= $(addprefix obj/,$(SRC:.c=.o))

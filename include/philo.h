@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/12 16:05:45 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/12 16:25:20 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef struct	s_philo
 {
 	int				id;
 	int				state;
-	//int				left_fork;
-	//int				right_fork;
-	//int				times_eaten;
-	//pthread_t		*thread;
+	int				left_fork;
+	int				right_fork;
+	int				times_eaten;
+	pthread_t		*thread;
 	//pthread_mutex_t	*forks;
 
 }					t_philo;
@@ -51,6 +51,7 @@ typedef struct	s_table
 	t_fork	**forks;
 }				t_table;
 
+t_table	*create_table(t_params *p);
 void	*eating(void *arg);
 void	*sleeping(void *arg);
 void	*thinking(void *arg);
