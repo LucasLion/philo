@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/12 16:12:30 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/12 16:13:48 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	print_table(t_table *t)
 	int	i = 0;
 	while (t->philos[i])
 	{
-		printf("id: %d\n", t->philos[i]->id);
+		printf("id: %d\n", t->forks[i]->id);
 		i++;
 	}
 }
