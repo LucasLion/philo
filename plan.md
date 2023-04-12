@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 17:03:27 by llion             #+#    #+#              #
-#    Updated: 2023/04/12 12:29:48 by llion            ###   ########.fr        #
+#    Updated: 2023/04/12 15:52:36 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ parametres :
         - temps max de simulation
         - nombre de philosophes / fourchettes
         - chaque philosophe a un laps de temps pour dormir
-            - 
 - creer la table
     - recuperer le nombre de philosophes en parametres
     - allouer la memoire des tableau en fonction

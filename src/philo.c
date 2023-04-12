@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/12 15:42:14 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/12 15:53:28 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_table	*create_table(t_params *p, t_table *t)
 {
 	int		id;
 
-	id = 1;
+	id = 0;
 	t->n_philos = p->number_of_philosophers;
 	t->philos = create_philos(t->n_philos, id);
 	t->forks = create_forks(p, id);
