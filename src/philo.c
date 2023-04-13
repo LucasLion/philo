@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/12 16:42:34 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/13 02:36:31 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	create_thread(t_philo *p)
 {
 	p->thread = malloc(sizeof(pthread_t));
 	pthread_create(p->thread, NULL, &eating, p);
-	printf("coucou\n");
+	sleep(1);
 }
 
 int main(int argc, char **argv)
@@ -32,6 +32,7 @@ int main(int argc, char **argv)
 	while (table->philos[i])
 	{
 		create_thread(table->philos[i]);
+		i++;
 	}
 	return (0);
 }
