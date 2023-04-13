@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:43:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/11 14:30:15 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/13 12:11:00 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int	check_digits(int argc, char **argv)
 
 int	init_play(t_params *params, int argc, char **argv)
 {
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
 	if (argc == 6)
 		params->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	else
@@ -44,6 +47,7 @@ int	init_play(t_params *params, int argc, char **argv)
 		params->time_to_die = ft_atoi(argv[2]);
 		params->time_to_eat = ft_atoi(argv[3]);
 		params->time_to_sleep = ft_atoi(argv[4]);
+		params->begin_time = tv.tv_sec;
 	}
 	else
 		return 0;

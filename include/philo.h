@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/12 16:25:20 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/13 13:48:01 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct	s_params
 {
 	int				number_of_philosophers;
+	int				begin_time;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -33,6 +34,9 @@ typedef struct	s_philo
 	int				left_fork;
 	int				right_fork;
 	int				times_eaten;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	pthread_t		*thread;
 	//pthread_mutex_t	*forks;
 
@@ -52,6 +56,7 @@ typedef struct	s_table
 }				t_table;
 
 t_table	*create_table(t_params *p);
+void	*take_fork(void *arg);
 void	*eating(void *arg);
 void	*sleeping(void *arg);
 void	*thinking(void *arg);
