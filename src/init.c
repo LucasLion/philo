@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:43:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 17:03:49 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 18:07:01 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_digits(int argc, char **argv)
 {
 	int	i;
 	int	j;
-	
+
 	i = 1;
 	while (i < argc)
 	{
@@ -51,26 +51,6 @@ int	init_play(t_p *params, int argc, char **argv)
 		params->died = 0;
 	}
 	else
-		return 0;
+		return (0);
 	return (1);
 }
-
-int	initialization(t_p *params, int argc, char ** argv)
-{
-	if (!(check_digits(argc, argv)))
-	{
-		printf("Test failed ! WRONG AGRS\n");
-		free(params);
-		return (0);
-	}
-	if (init_play(params, argc, argv))
-		printf("Program initialized...\n");
-	else
-	{
-		printf("exit program... not good args\n");
-		free(params);
-		return (0);
-	}
-	return (1);
-}
-

@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 17:06:18 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 18:06:15 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #define MAG  "\x1B[35m"
 #define CYN  "\x1B[36m"
 #define WHT  "\x1B[37m"
+#define B	 "\x1B[1m"
+#define L	 "\x1B[4m"
 
 struct s_params;
 
@@ -34,7 +36,7 @@ typedef struct	s_philo
 	int				state;
 	int				times_eaten;
 	pthread_t		*thread;
-	pthread_mutex_t	**fork;
+	pthread_mutex_t	**forks;
 	struct s_params	*p;
 
 }					t_philo;
@@ -53,7 +55,7 @@ typedef struct	s_params
 }				t_p;
 
 
-t_p			*create_table(void);
+t_p			*init_params(int argc, char *argv[]);
 void		*take_fork(void *arg);
 void		*eating(void *arg);
 void		*sleeping(void *arg);

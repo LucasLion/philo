@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 17:05:58 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 17:44:02 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,21 @@ t_philo	**create_philos(int n, int id)
 	return (philos);
 }
 
-t_p	*create_table(void)
+t_p	*init_params(int argc, char *argv[])
 {
 	t_p	*p;
 	int	id;
+
 	p = malloc(sizeof(t_p));
 	if (p == NULL)
 		return (NULL);
+	if (!(check_digits(argc, argv)) || !init_play(p, argc, argv))
+	{
+		printf("exit program... WRONG ARGS\n");
+		free(p);
+		return (NULL);
+	}
 	id = 1;
-	p->n_philos = p->n_philos;
 	p->philos = create_philos(p->n_philos, id);
 	p->forks = create_forks(p);
 	return (p);
