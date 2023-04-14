@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/13 13:50:48 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 11:57:30 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,46 @@ void	associate_forks(t_params *p, t_philo **philos, t_fork **forks)
 	}
 }
 
-void	create_threads(t_philo *p)
+void	*routine(void *arg)
+{
+	pthread_mutex_t *fork;
+	pthread_mutex_t *eat;
+	t_philo			*p;
+
+
+	p = arg;
+	fork = malloc(sizeof(pthread_mutex_t));
+	eat = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(fork, NULL);
+	pthread_mutex_init(eat, NULL);
+	pthread_mutex_lock(fork);
+	take_fork(arg);
+	pthread_mutex_unlock(fork);
+	pthread_mutex_lock(eat);
+	eating(arg);
+	pthread_mutex_unlock(eat);
+	sleeping(arg);
+	return (arg);
+}
+
+void	create_threads(t_philo *p, t_params *params)
 {
 	p->thread = malloc(sizeof(pthread_t));
+	p->p = params;
 	if (p->thread == NULL)
 		return ;
-	pthread_create(p->thread, NULL, &take_fork, p);
-	pthread_join(*p->thread, NULL);
+	pthread_create(p->thread, NULL, &routine, p);
 }
 
 int main(int argc, char **argv)
 {
 	t_params		*params;
 	t_table			*table;
+	struct timeval	t;
 
+	gettimeofday(&t, NULL);
 	params = malloc(sizeof(t_params));
+	params->time = (t.tv_sec * 1000000) + t.tv_usec;
 	if (!initialization(params, argc, argv))
 		return (-1);
 	table = create_table(params);
@@ -55,7 +80,7 @@ int main(int argc, char **argv)
 	int i = 0;
 	while (table->philos[i])
 	{
-		create_threads(table->philos[i]);
+		create_threads(table->philos[i], params);
 		i++;
 	}
 	return (0);

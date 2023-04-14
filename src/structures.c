@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/13 11:59:45 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 11:57:32 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_fork	**create_forks(t_params *params, int id)
 	return (forks);
 }
 
-t_philo	*create_philo(int id, t_params *p)
+t_philo	*create_philo(int id)
 {
 	t_philo	*philo;
 
@@ -51,13 +51,10 @@ t_philo	*create_philo(int id, t_params *p)
 		return (NULL);
 	philo->state = 1;
 	philo->id = id;
-	philo->time_to_eat = p->time_to_eat;
-	philo->time_to_sleep = p->time_to_sleep;
-	philo->time_to_die = p->time_to_die;
 	return (philo);
 }
 
-t_philo	**create_philos(int n, int id, t_params *p)
+t_philo	**create_philos(int n, int id)
 {
 	t_philo	**philos;
 	int		i;
@@ -68,7 +65,7 @@ t_philo	**create_philos(int n, int id, t_params *p)
 		return (NULL);
 	while (i < n)
 	{
-		philos[i] = create_philo(id, p);
+		philos[i] = create_philo(id);
 		id++;
 		i++;
 	}
@@ -85,7 +82,7 @@ t_table	*create_table(t_params *p)
 		return (NULL);
 	id = 1;
 	t->n_philos = p->number_of_philosophers;
-	t->philos = create_philos(t->n_philos, id, p);
+	t->philos = create_philos(t->n_philos, id);
 	t->forks = create_forks(p, id);
 	return (t);
 }

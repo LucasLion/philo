@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/13 13:48:01 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 11:39:22 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,21 @@
 #include <unistd.h>
 #include <string.h>
 
+typedef struct	s_fork
+{
+	int	id;
+	int	state;
+}				t_fork;
+
 typedef struct	s_params
 {
-	int				number_of_philosophers;
-	int				begin_time;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				number_of_times_each_philosopher_must_eat;
+	int			number_of_philosophers;
+	int			begin_time;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			number_of_times_each_philosopher_must_eat;
+	long int	time;
 }				t_params;
 
 typedef struct	s_philo
@@ -34,25 +41,18 @@ typedef struct	s_philo
 	int				left_fork;
 	int				right_fork;
 	int				times_eaten;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
 	pthread_t		*thread;
-	//pthread_mutex_t	*forks;
+	pthread_mutex_t	*fork;
+	t_params		*p;
 
 }					t_philo;
 
-typedef struct	s_fork
-{
-	int				id;
-	int				state;
-}				t_fork;
-
 typedef struct	s_table
 {
-	int		n_philos;
-	t_philo	**philos;
-	t_fork	**forks;
+	int			n_philos;
+	t_philo		**philos;
+	t_fork		**forks;
+	t_params	*params;
 }				t_table;
 
 t_table	*create_table(t_params *p);
