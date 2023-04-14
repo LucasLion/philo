@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 12:59:57 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 13:55:31 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ long int	get_time()
 	long int		get_time;
 
 	gettimeofday(&t, NULL);
-
 	get_time = (t.tv_sec * 1000000) + t.tv_usec;
 	return (get_time);
 }

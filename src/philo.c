@@ -6,13 +6,13 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 12:33:37 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 13:55:43 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	associate_forks(t_params *p, t_philo **philos, t_fork **forks)
+void	associate_forks(t_params *p, t_philo **philos, pthread_mutex_t **forks)
 {
 	int	i;
 
@@ -21,13 +21,13 @@ void	associate_forks(t_params *p, t_philo **philos, t_fork **forks)
 	{
 		if (i == p->number_of_philosophers - 1)
 		{
-			philos[i]->left_fork = *forks[i];
-			philos[i]->right_fork = *forks[0];
+			philos[i]->left_fork = forks[i];
+			philos[i]->right_fork = forks[0];
 		}
 		else
 		{
-			philos[i]->left_fork = *forks[i];
-			philos[i]->right_fork = *forks[i + 1];
+			philos[i]->left_fork = forks[i];
+			philos[i]->right_fork = forks[i + 1];
 		}
 		i++;
 	}
@@ -35,12 +35,14 @@ void	associate_forks(t_params *p, t_philo **philos, t_fork **forks)
 
 void	*routine(void *arg)
 {
-	t_philo			*p;
+	t_philo		*p;
+	size_t		i;
 
-	p = arg;
+	p = (t_philo *)arg;
+	i = get_time() - p->p->begin_time;
 	take_fork(arg);
 	eating(arg);
-	sleeping(arg);
+	printf("%ld %d is sleeping\n", i, p->id);
 	return (arg);
 }
 
@@ -48,7 +50,6 @@ int	create_threads(t_philo *p, t_params *params)
 {
 	p->p = params;
 	p->thread = malloc(sizeof(pthread_t));
-	p->fork = malloc(sizeof(pthread_mutex_t));
 	if (p->thread == NULL)
 		return (-1);
 	if (pthread_create(p->thread, NULL, &routine, p) != 0)

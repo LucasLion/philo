@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:50:34 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 12:54:22 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 13:53:02 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,27 @@
 void	*take_fork(void *arg)
 {
 	t_philo *philo;
+	size_t	i;
 
 	philo = (t_philo *)arg;
-	pthread_mutex_init(philo->fork, NULL);
-	pthread_mutex_lock(philo->fork);
-	printf("%ds philo %d has taken a fork\n", philo->p->time_to_eat, philo->id);
-	pthread_mutex_unlock(philo->fork);
+	i = get_time() - philo->p->begin_time;
+	pthread_mutex_lock(philo->left_fork);
+	printf("%ld %d has taken a fork1\n", i, philo->id);
+	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_lock(philo->right_fork);
+	printf("%ld %d has taken a fork2\n", i, philo->id);
+	pthread_mutex_unlock(philo->right_fork);
 	philo->state = 1;
 	return (arg);
 }
 void	*eating(void *arg)
 {
 	t_philo *philo;
+	size_t	i;
 
 	philo = (t_philo *)arg;
-	printf("%ds philo %d is eating\n", philo->p->time_to_eat, philo->id);
+	i = get_time() - philo->p->begin_time;
+	printf("%ld %d is eating\n", i, philo->id);
 	philo->state = 2;
-	return (arg);
-}
-
-void	*sleeping(void *arg)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)arg;
-	printf("%ds philo %d is sleeping\n", philo->p->time_to_sleep, philo->id);
-	philo->state = 3;
 	return (arg);
 }

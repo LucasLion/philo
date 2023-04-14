@@ -6,37 +6,34 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 12:55:05 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 13:49:56 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-t_fork	*create_fork(int id)
+pthread_mutex_t	*create_fork()
 {
-	t_fork	*fork;
+	pthread_mutex_t	*fork;
 
-	fork = malloc(sizeof(t_fork));
+	fork = malloc(sizeof(pthread_mutex_t));
 	if (fork == NULL)
 		return (NULL);
-	fork->state = 1;
-	fork->id = id;
 	return (fork);
 }
 
-t_fork	**create_forks(t_params *params, int id)
+pthread_mutex_t	**create_forks(t_params *params)
 {
-	t_fork	**forks;
+	pthread_mutex_t	**forks;
 	int		i;
 
 	i = 0;
-	forks = ft_calloc(params->number_of_philosophers + 1, sizeof(t_fork));
+	forks = ft_calloc(params->number_of_philosophers + 1, sizeof(pthread_mutex_t));
 	if (forks == NULL)
 		return (NULL);
 	while (i < params->number_of_philosophers)
 	{
-		forks[i] = create_fork(id);
-		id++;
+		forks[i] = create_fork();
 		i++;
 	}
 	return (forks);
@@ -83,7 +80,7 @@ t_table	*create_table(t_params *p)
 	id = 1;
 	t->n_philos = p->number_of_philosophers;
 	t->philos = create_philos(t->n_philos, id);
-	t->forks = create_forks(p, id);
+	t->forks = create_forks(p);
 	return (t);
 }
 
