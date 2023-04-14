@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/14 11:09:38 by llion            ###   ########.fr        #
+#    Updated: 2023/04/14 12:54:24 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ $(NAME):	$(OBJ)
 	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -o $(NAME)
 	@printf "\033[32m[OK]\033[0m\t\tcompiled\n"
 
-debug:		$(OBJ)
+db:			$(OBJ)
 	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -fsanitize=address -o $(NAME)
 	@printf "\033[31m[DB]\033[0m\t\tcompiled\n"
 
-thread:		$(OBJ)
+th:			$(OBJ)
 	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -fsanitize=thread -o $(NAME)
 	@printf "\033[34m[TH]\033[0m\t\tcompiled\n"
 

@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:50:34 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 11:57:31 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 12:54:22 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	*take_fork(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	philo->state = 1;
+	pthread_mutex_init(philo->fork, NULL);
+	pthread_mutex_lock(philo->fork);
 	printf("%ds philo %d has taken a fork\n", philo->p->time_to_eat, philo->id);
+	pthread_mutex_unlock(philo->fork);
+	philo->state = 1;
 	return (arg);
 }
 void	*eating(void *arg)
