@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 13:49:56 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 17:05:58 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ pthread_mutex_t	*create_fork()
 	return (fork);
 }
 
-pthread_mutex_t	**create_forks(t_params *params)
+pthread_mutex_t	**create_forks(t_p *params)
 {
 	pthread_mutex_t	**forks;
 	int		i;
 
 	i = 0;
-	forks = ft_calloc(params->number_of_philosophers + 1, sizeof(pthread_mutex_t));
+	forks = ft_calloc(params->n_philos + 1, sizeof(pthread_mutex_t));
 	if (forks == NULL)
 		return (NULL);
-	while (i < params->number_of_philosophers)
+	while (i < params->n_philos)
 	{
 		forks[i] = create_fork();
 		i++;
@@ -70,17 +70,17 @@ t_philo	**create_philos(int n, int id)
 	return (philos);
 }
 
-t_table	*create_table(t_params *p)
+t_p	*create_table(void)
 {
-	t_table	*t;
+	t_p	*p;
 	int	id;
-	t = malloc(sizeof(t_table));
-	if (t == NULL)
+	p = malloc(sizeof(t_p));
+	if (p == NULL)
 		return (NULL);
 	id = 1;
-	t->n_philos = p->number_of_philosophers;
-	t->philos = create_philos(t->n_philos, id);
-	t->forks = create_forks(p);
-	return (t);
+	p->n_philos = p->n_philos;
+	p->philos = create_philos(p->n_philos, id);
+	p->forks = create_forks(p);
+	return (p);
 }
 

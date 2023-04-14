@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:43:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 13:49:57 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 17:03:49 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_digits(int argc, char **argv)
 	return (1);
 }
 
-int	init_play(t_params *params, int argc, char **argv)
+int	init_play(t_p *params, int argc, char **argv)
 {
 	struct timeval	t;
 
@@ -43,7 +43,7 @@ int	init_play(t_params *params, int argc, char **argv)
 		params->number_of_times_each_philosopher_must_eat = 0;
 	if (argc == 5 || argc == 6)
 	{
-		params->number_of_philosophers = ft_atoi(argv[1]);
+		params->n_philos = ft_atoi(argv[1]);
 		params->time_to_die = ft_atoi(argv[2]);
 		params->time_to_eat = ft_atoi(argv[3]);
 		params->time_to_sleep = ft_atoi(argv[4]);
@@ -55,7 +55,7 @@ int	init_play(t_params *params, int argc, char **argv)
 	return (1);
 }
 
-int	initialization(t_params *params, int argc, char ** argv)
+int	initialization(t_p *params, int argc, char ** argv)
 {
 	if (!(check_digits(argc, argv)))
 	{

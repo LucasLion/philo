@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 13:55:31 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 17:06:05 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ long int	get_time()
 	return (get_time);
 }
 
-void		t_sleep(long int time, t_params *p)
+void		t_sleep(long int time, t_p *p)
 {
 	long long	i;
 	int			val;

@@ -6,20 +6,20 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 13:55:43 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/14 17:06:17 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	associate_forks(t_params *p, t_philo **philos, pthread_mutex_t **forks)
+void	associate_forks(t_p *p, t_philo **philos, pthread_mutex_t **forks)
 {
 	int	i;
 
 	i = 0;
-	while (i < p->number_of_philosophers)
+	while (i < p->n_philos)
 	{
-		if (i == p->number_of_philosophers - 1)
+		if (i == p->n_philos - 1)
 		{
 			philos[i]->left_fork = forks[i];
 			philos[i]->right_fork = forks[0];
@@ -46,7 +46,7 @@ void	*routine(void *arg)
 	return (arg);
 }
 
-int	create_threads(t_philo *p, t_params *params)
+int	create_threads(t_philo *p, t_p *params)
 {
 	p->p = params;
 	p->thread = malloc(sizeof(pthread_t));
@@ -59,18 +59,16 @@ int	create_threads(t_philo *p, t_params *params)
 
 int main(int argc, char **argv)
 {
-	t_params		*params;
-	t_table			*table;
+	t_p		*params;
 
-	params = malloc(sizeof(t_params));
 	if (!initialization(params, argc, argv))
 		return (-1);
-	table = create_table(params);
-	associate_forks(params, table->philos, table->forks);
+	params = create_table();
+	associate_forks(params, params->philos, params->forks);
 	int i = 0;
-	while (table->philos[i])
+	while (params->philos[i])
 	{
-		if (create_threads(table->philos[i], params) != 0)
+		if (create_threads(params->philos[i], params) != 0)
 			return (-1);
 		i++;
 	}
