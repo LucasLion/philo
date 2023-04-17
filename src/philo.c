@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 16:21:09 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 17:13:16 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int main(int argc, char **argv)
 		if (create_threads(params->philos[i], params) != 0)
 			return (-1);
 		i++;
+		usleep(10);
 	}
 	i = 0;
 	while (params->philos[i])
@@ -63,6 +64,7 @@ int main(int argc, char **argv)
 		if (pthread_detach(*params->philos[i]->thread) != 0)
 			return (-1);
 		i++;
+		usleep(10);
 	}
 	return (0);
 }

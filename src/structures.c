@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 16:20:48 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:42:26 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ pthread_mutex_t	*create_fork()
 	pthread_mutex_t	*fork;
 
 	fork = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(fork, NULL);
 	if (fork == NULL)
 		return (NULL);
 	return (fork);
@@ -46,6 +47,8 @@ t_philo	*create_philo(int id)
 	philo = malloc(sizeof(t_philo));
 	if (philo == NULL)
 		return (NULL);
+	philo->display = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(philo->display, NULL);
 	philo->is_dead = 0;
 	philo->id = id;
 	return (philo);

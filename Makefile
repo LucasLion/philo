@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/17 16:05:04 by llion            ###   ########.fr        #
+#    Updated: 2023/04/17 17:00:03 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ TIMES		= 0
 
 NAME		= philo
 CC			= gcc
-CFLAGS		= -std=gnu99 -Wall -Wextra -Werror -ggdb3
+CFLAGS		= -Wall -Wextra -Werror -ggdb3
 RM			= rm -rf
 SRC			= philo.c		\
 			  ft_atoi.c		\
