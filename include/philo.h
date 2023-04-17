@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 18:06:15 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:02:52 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_philo
 	int				times_eaten;
 	pthread_t		*thread;
 	pthread_mutex_t	**forks;
+	pthread_mutex_t	*display;
 	struct s_params	*p;
 
 }					t_philo;
@@ -68,3 +69,4 @@ void		*ft_calloc(size_t count, size_t size);
 int			ft_atoi(const char *str);
 long int	get_time();
 void		t_sleep(long int time, t_p *p);
+void		display(size_t i, t_philo *p, int action); 

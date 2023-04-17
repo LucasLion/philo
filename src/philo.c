@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 18:07:41 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:05:06 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ void	*routine(void *arg)
 
 	p = (t_philo *)arg;
 	i = get_time() - p->p->begin_time;
-	take_fork(arg);
-	eating(arg);
-	printf(B RED"%ld\t"NRM" %d\t"BLU"is " L "thinking\n"NRM, i, p->id);
+	while (1)
+	{
+		take_fork(arg);
+		eating(arg);
+		sleeping(arg);
+		thinking(arg);
+	}
 	return (arg);
 }
 
@@ -29,10 +33,12 @@ int	create_threads(t_philo *p, t_p *params)
 {
 	p->p = params;
 	p->thread = malloc(sizeof(pthread_t));
+	p->display = malloc(sizeof(pthread_mutex_t));
 	if (p->thread == NULL)
 		return (-1);
 	if (pthread_create(p->thread, NULL, &routine, p) != 0)
 		return (-2);
+	usleep(10);
 	return (0);
 }
 
@@ -45,7 +51,6 @@ int main(int argc, char **argv)
 	params = init_params(argc, argv);
 	if (params == NULL)
 		return (-1);
-	printf("%d\n", params->n_philos);
 	while (params->philos[i])
 	{
 		if (create_threads(params->philos[i], params) != 0)

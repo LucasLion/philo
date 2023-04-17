@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 17:44:02 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 15:27:55 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ t_p	*init_params(int argc, char *argv[])
 		return (NULL);
 	}
 	id = 1;
-	p->philos = create_philos(p->n_philos, id);
 	p->forks = create_forks(p);
+	p->philos = create_philos(p->n_philos, id);
 	return (p);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 17:16:52 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 17:05:52 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 14:07:36 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_error(void)
 {
-	write(2, "Error: not an integer\n", 6);
+	write(2, "Error: not an integer\n", 22);
 	exit(0);
 }
 

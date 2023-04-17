@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/14 17:06:05 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:05:40 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,19 @@ void		t_sleep(long int time, t_p *p)
 		val = get_time() - i;
 		if (i >= time)
 			break ;
-		usleep(50);
+		sleep(val);
 	}
+}
+
+void	display(size_t i, t_philo *p, int action)
+{
+	if (action == 1)
+		printf(B RED"%ld\t"NRM" %d\t"YEL"has taken a " L "fork\n"NRM, i, p->id);
+	else if (action == 2)
+		printf(B RED"%ld\t"NRM" %d\t"CYN"is " L "eating\n"NRM, i, p->id);
+	else if (action == 3)
+		printf(B RED "%ld\t"NRM" %d\t" BLU "is " L "thinking\n"NRM, i, p->id);
+	else if (action == 4)
+		printf(B RED "%ld\t"NRM" %d\t" MAG "is " L "sleeping\n"NRM, i, p->id);
 }
 
