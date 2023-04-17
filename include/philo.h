@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 16:02:52 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:20:25 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ struct s_params;
 typedef struct	s_philo
 {
 	int				id;
-	int				state;
+	int				is_dead;
 	int				times_eaten;
 	pthread_t		*thread;
 	pthread_mutex_t	**forks;

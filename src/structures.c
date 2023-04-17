@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 15:27:55 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:20:48 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_philo	*create_philo(int id)
 	philo = malloc(sizeof(t_philo));
 	if (philo == NULL)
 		return (NULL);
-	philo->state = 1;
+	philo->is_dead = 0;
 	philo->id = id;
 	return (philo);
 }

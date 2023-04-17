@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 16:05:06 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 16:21:09 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*routine(void *arg)
 
 	p = (t_philo *)arg;
 	i = get_time() - p->p->begin_time;
-	while (1)
+	while (!p->is_dead)
 	{
 		take_fork(arg);
 		eating(arg);
