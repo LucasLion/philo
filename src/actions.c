@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:50:34 by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 17:13:54 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 17:24:11 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	*thinking(void *arg)
 	pthread_mutex_lock(p->display);
 	display(i, p, 3);
 	pthread_mutex_unlock(p->display);
-	usleep(500);
 	return (arg);
 }
 

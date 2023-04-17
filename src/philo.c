@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 17:13:16 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/17 17:24:12 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	create_threads(t_philo *p, t_p *params)
 		return (-1);
 	if (pthread_create(p->thread, NULL, &routine, p) != 0)
 		return (-2);
-	usleep(10);
 	return (0);
 }
 
