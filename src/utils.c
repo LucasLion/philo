@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/19 18:35:02 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/19 19:22:35 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		t_sleep(long int t)
 	gettimeofday(&b, NULL); 
 	while (((a.tv_sec - b.tv_sec) * 1000) + ((a.tv_usec - b.tv_usec) / 1000) < t)
 	{
-		usleep(250);
+		usleep(200);
 		gettimeofday(&a, NULL);
 	}
 }
