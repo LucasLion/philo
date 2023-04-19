@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:43:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 15:27:51 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/19 18:17:26 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	init_play(t_p *params, int argc, char **argv)
 
 	gettimeofday(&t, NULL);
 	if (argc == 6)
-		params->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+		params->nb_meals = ft_atoi(argv[5]);
 	else
-		params->number_of_times_each_philosopher_must_eat = 0;
+		params->nb_meals = 0;
 	if (argc == 5 || argc == 6)
 	{
 		params->n_philos = ft_atoi(argv[1]);

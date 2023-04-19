@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/17 16:20:25 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/19 18:35:39 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct	s_philo
 	int				id;
 	int				is_dead;
 	int				times_eaten;
+	long int		last_eat;
 	pthread_t		*thread;
 	pthread_mutex_t	**forks;
 	pthread_mutex_t	*display;
 	struct s_params	*p;
-
 }					t_philo;
 
 typedef struct	s_params
@@ -48,7 +48,7 @@ typedef struct	s_params
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
-	int					number_of_times_each_philosopher_must_eat;
+	int					nb_meals;
 	long int			begin_time;
 	int					died;
 	t_philo				**philos;
@@ -68,5 +68,5 @@ int			initialization(t_p *philo, int argc, char ** argv);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_atoi(const char *str);
 long int	get_time();
-void		t_sleep(long int time, t_p *p);
-void		display(size_t i, t_philo *p, int action); 
+void		t_sleep(long int time);
+void		display(t_philo *p, int action); 
