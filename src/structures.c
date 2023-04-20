@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/19 14:51:10 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/20 13:38:31 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ t_philo	*create_philo(int id)
 		return (NULL);
 	philo->display = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(philo->display, NULL);
-	philo->is_dead = 0;
 	philo->last_eat = get_time();
 	philo->id = id;
+	philo->times_eaten = 0;
 	return (philo);
 }
 

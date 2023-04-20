@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/19 18:35:39 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/20 13:02:11 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ struct s_params;
 typedef struct	s_philo
 {
 	int				id;
-	int				is_dead;
 	int				times_eaten;
 	long int		last_eat;
 	pthread_t		*thread;
@@ -49,10 +48,12 @@ typedef struct	s_params
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nb_meals;
+	int					nao_tem_fome;
 	long int			begin_time;
-	int					died;
+	int					dead;
 	t_philo				**philos;
 	pthread_mutex_t		**forks;
+	pthread_mutex_t		*death;
 }				t_p;
 
 

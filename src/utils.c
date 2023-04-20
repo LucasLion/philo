@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/19 19:22:35 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/20 14:04:09 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void		t_sleep(long int t)
 	}
 }
 
+
 void	display(t_philo *p, int action)
 {
 	size_t	i;
@@ -65,5 +66,7 @@ void	display(t_philo *p, int action)
 		printf(B RED "%ld\t"NRM" %d\t" MAG "is " L "sleeping\n"NRM, i, p->id);
 	else if (action == 5)
 		printf(B RED "%ld\t"NRM" %d\t" MAG L "died\n"NRM, i, p->id);
+	else if (action == 6)
+		printf(B GRN "All philos have EATEN\n");
 }
 
