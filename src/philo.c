@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 15:30:54 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:46:59 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int	main(int argc, char **argv)
 			break ;
 		}
 	}
+	destroy_mutex(params);
 	return (0);
 }

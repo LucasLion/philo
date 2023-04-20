@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/19 18:25:08 by llion            ###   ########.fr        #
+#    Updated: 2023/04/20 17:46:39 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC			= philo.c		\
 			  actions.c		\
 			  utils.c		\
 			  structures.c	\
+			  free.c		\
 			  init.c
 HEADERS		= -I include -lpthread -D_REETRANT -lm
 OBJ			= $(addprefix obj/,$(SRC:.c=.o))

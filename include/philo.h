@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 15:28:27 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:46:59 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ int			ft_atoi(const char *str);
 long int	get_time(void);
 void		t_sleep(long int time);
 void		display(t_philo *p, int action);
-
+void		destroy_mutex(t_p *p);
 #endif
