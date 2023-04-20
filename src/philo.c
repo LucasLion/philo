@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llion <llion@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 14:07:56 by llion            ###   ########.fr       */
+/*   Created: 2023/04/20 15:05:33 by llion             #+#    #+#             */
+/*   Updated: 2023/04/20 15:30:54 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,45 +54,34 @@ int	slayer(t_p *p, t_philo **ph)
 	while (i < p->n_philos && !p->dead)
 	{
 		i = 0;
-		time = get_time();	
+		time = get_time();
 		pthread_mutex_lock(p->death);
 		if (time - ph[i]->last_eat > p->time_to_die)
-		{
 			p->dead = 1;
-			//display(ph[i], 5);
-		}
 		pthread_mutex_unlock(p->death);
 		usleep(100);
 		if (p->dead)
 			return (1);
 		i = 0;
-		while (p->nb_meals != 0 && i < p->n_philos && ph[i]->times_eaten >= p->nb_meals)
+		while (p->nb_meals != 0 && i < p->n_philos
+			&& ph[i]->times_eaten >= p->nb_meals)
 			i++;
 		if (i == p->n_philos)
-		{
-			p->nao_tem_fome = 1;
 			return (2);
-		}
-
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
-int main(int argc, char **argv)
+int	create_and_detach(t_p *params)
 {
-	t_p		*params;
-	int		i;
+	int	i;
 
 	i = 0;
-	get_time();
-	params = init_params(argc, argv);
-	if (params == NULL)
-		return (-1);
 	while (params->philos[i])
 	{
 		if (create_threads(params->philos[i], params) != 0)
-			return (-1);
+			return (0);
 		i++;
 		usleep(10);
 	}
@@ -100,16 +89,28 @@ int main(int argc, char **argv)
 	while (params->philos[i])
 	{
 		if (pthread_detach(*params->philos[i]->thread) != 0)
-			return (-1);
+			return (0);
 		i++;
 		usleep(10);
 	}
+	return (1);
+}
+
+int	main(int argc, char **argv)
+{
+	t_p		*params;
+
+	get_time();
+	params = init_params(argc, argv);
+	if (params == NULL)
+		return (-1);
+	create_and_detach(params);
 	while (1)
 	{
-		if (slayer(params, params->philos) == 1)	
+		if (slayer(params, params->philos) == 1)
 		{
 			display(params->philos[0], 5);
-			break;
+			break ;
 		}
 		else if (slayer(params, params->philos) == 2)
 		{

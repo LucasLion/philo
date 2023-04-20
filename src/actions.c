@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:50:34 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 14:04:30 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:19:09 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*take_fork(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	pthread_mutex_lock(philo->p->forks[(philo->id - 1)]);
@@ -25,9 +25,10 @@ void	*take_fork(void *arg)
 	pthread_mutex_unlock(philo->display);
 	return (arg);
 }
+
 void	*eating(void *arg)
 {
-	t_philo *p;
+	t_philo	*p;
 
 	p = (t_philo *)arg;
 	pthread_mutex_lock(p->display);
@@ -43,7 +44,7 @@ void	*eating(void *arg)
 
 void	*thinking(void *arg)
 {
-	t_philo *p;
+	t_philo	*p;
 
 	p = (t_philo *)arg;
 	pthread_mutex_lock(p->display);
@@ -54,7 +55,7 @@ void	*thinking(void *arg)
 
 void	*sleeping(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	pthread_mutex_lock(philo->display);

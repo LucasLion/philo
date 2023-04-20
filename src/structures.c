@@ -6,13 +6,13 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 13:38:31 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:15:27 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-pthread_mutex_t	*create_fork()
+pthread_mutex_t	*create_fork(void)
 {
 	pthread_mutex_t	*fork;
 
@@ -26,7 +26,7 @@ pthread_mutex_t	*create_fork()
 pthread_mutex_t	**create_forks(t_p *params)
 {
 	pthread_mutex_t	**forks;
-	int		i;
+	int				i;
 
 	i = 0;
 	forks = ft_calloc(params->n_philos + 1, sizeof(pthread_mutex_t));
@@ -93,4 +93,3 @@ t_p	*init_params(int argc, char *argv[])
 	p->philos = create_philos(p->n_philos, id);
 	return (p);
 }
-
