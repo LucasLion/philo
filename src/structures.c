@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/21 12:27:36 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:52:19 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ pthread_mutex_t	**create_forks(t_p *params)
 	int				i;
 
 	i = 0;
-	forks = ft_calloc(params->n_philos + 1, sizeof(pthread_mutex_t*));
+	forks = ft_calloc(params->n_philos + 1, sizeof(pthread_mutex_t *));
 	if (forks == NULL)
 		return (NULL);
 	forks[params->n_philos] = NULL;

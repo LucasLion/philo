@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/21 12:31:57 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:51:38 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	*routine(void *arg)
 		sleeping(arg);
 		thinking(arg);
 	}
-	if (p->p->nao_tem_fome)
-		exit(0);
 	return (arg);
 }
 
@@ -51,9 +49,9 @@ int	slayer(t_p *p, t_philo **ph)
 	long int	time;
 	int			i;
 
-	i = 0;
+	i = -1;
 	pthread_mutex_init(p->death, NULL);
-	while (i < p->n_philos && !p->dead)
+	while (++i < p->n_philos && !p->dead)
 	{
 		i = 0;
 		time = get_time();
@@ -69,10 +67,7 @@ int	slayer(t_p *p, t_philo **ph)
 			&& ph[i]->times_eaten >= p->nb_meals)
 			i++;
 		if (i == p->n_philos)
-		{
-			p->nao_tem_fome = 1;
 			return (2);
-		}
 		i++;
 	}
 	return (0);
