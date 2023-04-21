@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 17:46:59 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:30:23 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_philo
 	int				times_eaten;
 	long int		last_eat;
 	pthread_t		*thread;
-	pthread_mutex_t	**forks;
 	pthread_mutex_t	*display;
 	struct s_params	*p;
 }					t_philo;
@@ -70,5 +69,5 @@ int			ft_atoi(const char *str);
 long int	get_time(void);
 void		t_sleep(long int time);
 void		display(t_philo *p, int action);
-void		destroy_mutex(t_p *p);
+void		destroy_mutex_and_free(t_p *p);
 #endif

@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 17:46:59 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:31:57 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	*routine(void *arg)
 		sleeping(arg);
 		thinking(arg);
 	}
+	if (p->p->nao_tem_fome)
+		exit(0);
 	return (arg);
 }
 
@@ -67,7 +69,10 @@ int	slayer(t_p *p, t_philo **ph)
 			&& ph[i]->times_eaten >= p->nb_meals)
 			i++;
 		if (i == p->n_philos)
+		{
+			p->nao_tem_fome = 1;
 			return (2);
+		}
 		i++;
 	}
 	return (0);
@@ -83,7 +88,7 @@ int	create_and_detach(t_p *params)
 		if (create_threads(params->philos[i], params) != 0)
 			return (0);
 		i++;
-		usleep(10);
+		usleep(20);
 	}
 	i = 0;
 	while (params->philos[i])
@@ -91,7 +96,7 @@ int	create_and_detach(t_p *params)
 		if (pthread_detach(*params->philos[i]->thread) != 0)
 			return (0);
 		i++;
-		usleep(10);
+		usleep(20);
 	}
 	return (1);
 }
@@ -114,10 +119,11 @@ int	main(int argc, char **argv)
 		}
 		else if (slayer(params, params->philos) == 2)
 		{
+			usleep(100);
 			display(params->philos[0], 6);
 			break ;
 		}
 	}
-	destroy_mutex(params);
+	destroy_mutex_and_free(params);
 	return (0);
 }

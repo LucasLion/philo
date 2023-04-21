@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 17:48:07 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 12:27:36 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,16 @@ pthread_mutex_t	**create_forks(t_p *params)
 	int				i;
 
 	i = 0;
-	forks = ft_calloc(params->n_philos + 1, sizeof(pthread_mutex_t));
+	forks = ft_calloc(params->n_philos + 1, sizeof(pthread_mutex_t*));
 	if (forks == NULL)
 		return (NULL);
+	forks[params->n_philos] = NULL;
 	while (i < params->n_philos)
 	{
 		forks[i] = create_fork();
 		i++;
 	}
 	return (forks);
-}
-
-t_philo	*create_philo(int id)
-{
-	t_philo	*philo;
-
-	philo = malloc(sizeof(t_philo));
-	if (philo == NULL)
-		return (NULL);
-	philo->display = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(philo->display, NULL);
-	philo->last_eat = get_time();
-	philo->id = id;
-	philo->times_eaten = 0;
-	return (philo);
 }
 
 t_philo	**create_philos(int n, int id)
@@ -66,7 +52,12 @@ t_philo	**create_philos(int n, int id)
 		return (NULL);
 	while (i < n)
 	{
-		philos[i] = create_philo(id);
+		philos[i] = malloc(sizeof(t_philo));
+		if (philos[i] == NULL)
+			return (NULL);
+		philos[i]->last_eat = get_time();
+		philos[i]->id = id;
+		philos[i]->times_eaten = 0;
 		id++;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:50:34 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 15:19:09 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 11:54:56 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*take_fork(void *arg)
 	philo = (t_philo *)arg;
 	pthread_mutex_lock(philo->p->forks[(philo->id - 1)]);
 	pthread_mutex_lock(philo->p->forks[(philo->id) % philo->p->n_philos]);
+	pthread_mutex_init(philo->display, NULL);
 	pthread_mutex_lock(philo->display);
 	display(philo, 1);
 	display(philo, 1);
@@ -31,6 +32,7 @@ void	*eating(void *arg)
 	t_philo	*p;
 
 	p = (t_philo *)arg;
+	pthread_mutex_init(p->display, NULL);
 	pthread_mutex_lock(p->display);
 	display(p, 2);
 	pthread_mutex_unlock(p->display);
@@ -47,6 +49,7 @@ void	*thinking(void *arg)
 	t_philo	*p;
 
 	p = (t_philo *)arg;
+	pthread_mutex_init(p->display, NULL);
 	pthread_mutex_lock(p->display);
 	display(p, 3);
 	pthread_mutex_unlock(p->display);
@@ -58,6 +61,7 @@ void	*sleeping(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	pthread_mutex_init(philo->display, NULL);
 	pthread_mutex_lock(philo->display);
 	display(philo, 4);
 	pthread_mutex_unlock(philo->display);
