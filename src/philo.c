@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/21 15:18:25 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 16:23:33 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	*routine(void *arg)
 	{
 		take_fork(arg);
 		eating(arg);
+		if (p->p->nao_tem_fome == 1)
+			break ;
 		sleeping(arg);
 		thinking(arg);
 	}
@@ -53,18 +55,22 @@ int	slayer(t_p *p, t_philo **ph)
 	while (++i < p->n_philos && !p->dead)
 	{
 		i = 0;
+		pthread_mutex_lock(p->death);
 		time = get_time();
 		if (time - ph[i]->last_eat > p->time_to_die)
 			p->dead = 1;
-		pthread_mutex_unlock(p->death);
 		if (p->dead)
 			return (1);
+		pthread_mutex_unlock(p->death);
 		i = 0;
 		while (p->nb_meals != 0 && i < p->n_philos
 			&& ph[i]->times_eaten >= p->nb_meals)
 			i++;
 		if (i == p->n_philos)
+		{
+			p->nao_tem_fome = 1;
 			return (2);
+		}
 		i++;
 	}
 	return (0);
@@ -95,21 +101,29 @@ int	create_and_detach(t_p *params)
 
 int	main(int argc, char **argv)
 {
+	// TODO segfault quand beaucoup de philosophes
+	// TODO il meurt en plein repas -> faire une varialbe (en train de manger ou pas)
+	// et check for death seulement quand on ne mange pas
 	t_p		*params;
+	int	i;
 
+	printf(B GRN "╔═══════════════════════════════════╗\n" NRM);
 	get_time();
 	params = init_params(argc, argv);
 	if (params == NULL || create_and_detach(params) == 0)
 		return (-1);
 	while (1)
 	{
-		if (slayer(params, params->philos) == 1)
+		i = slayer(params, params->philos);
+		if (i == 1)
 		{
+			usleep(200);
 			display(params->philos[0], 5);
 			break ;
 		}
-		else if (slayer(params, params->philos) == 2)
+		else if (i == 2)
 		{
+			usleep(200);
 			display(params->philos[0], 6);
 			break ;
 		}
