@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 15:31:30 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/21 14:52:55 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,36 @@ void	t_sleep(long int t)
 	}
 }
 
+void	eaten(void)
+{
+	printf(B GRN "╠═══════════════════════════════════╣\n" NRM);
+	printf(B GRN "║ 🍴 All philosophers have EATEN 🍴 ║\n" NRM);
+	printf(B GRN "╚═══════════════════════════════════╝\n" NRM);
+}
+
 void	display(t_philo *p, int action)
 {
 	size_t	i;
 
 	i = get_time();
 	if (action == 1)
-		printf(B RED"%ld\t"NRM" %d\t"YEL"has taken a " L "fork\n" NRM, i, p->id);
+		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+			YEL"has taken a fork"GRN"    ║\n"NRM, i, p->id);
 	else if (action == 2)
-		printf(B RED"%ld\t"NRM" %d\t"CYN"is " L "eating\n" NRM, i, p->id);
+		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+			CYN"is eating"GRN"           ║\n" NRM, i, p->id);
 	else if (action == 3)
-		printf(B RED "%ld\t"NRM" %d\t" BLU "is " L "thinking\n" NRM, i, p->id);
+		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+			BLU "is thinking"GRN"         ║\n" NRM, i, p->id);
 	else if (action == 4)
-		printf(B RED "%ld\t"NRM" %d\t" MAG "is " L "sleeping\n" NRM, i, p->id);
+		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+			MAG "is sleeping"GRN"         ║\n" NRM, i, p->id);
 	else if (action == 5)
-		printf(B RED "%ld\t"NRM" %d\t" MAG L "died\n" NRM, i, p->id);
+	{
+		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+			MAG "died"GRN"                ║\n" NRM, i, p->id);
+		printf(B GRN "╚═══════════════════════════════════╝\n" NRM);
+	}
 	else if (action == 6)
-		printf(B GRN "All philos have EATEN\n"NRM);
+		eaten();
 }
