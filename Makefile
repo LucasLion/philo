@@ -6,12 +6,12 @@
 #    By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 16:22:00 by llion             #+#    #+#              #
-#    Updated: 2023/04/20 17:46:39 by llion            ###   ########.fr        #
+#    Updated: 2023/04/24 11:02:22 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NUM			= 4
-DIE			= 500
+DIE			= 900
 EAT			= 200
 SLEEP		= 200
 TIMES		= 0
@@ -49,8 +49,12 @@ th:			$(OBJ)
 	@$(CC) $(HEADERS) $(CFLAGS) $(OBJ) -fsanitize=thread -o $(NAME)
 	@printf "\033[34m[TH]\033[0m\t\tcompiled\n"
 
+leak:	
+	@valgrind --leak-check=full ./$(NAME) $(NUM) $(DIE) $(EAT) $(SLEEP) $(TIMES)
+
 run:
 	@./$(NAME) $(NUM) $(DIE) $(EAT) $(SLEEP) $(TIMES)
+
 clean:
 	@$(RM) $(OBJ)
 	@printf "\033[32m[OK]\033[0m\t\tobjects cleaned\n"

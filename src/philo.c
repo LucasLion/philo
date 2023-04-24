@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/21 16:23:33 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/24 11:37:28 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	*routine(void *arg)
 {
 	t_philo		*p;
-	int			i;
 
 	p = (t_philo *)arg;
-	i = get_time() - p->p->begin_time;
 	while (!p->p->dead)
 	{
 		take_fork(arg);
@@ -36,7 +34,6 @@ int	create_threads(t_philo *p, t_p *params)
 	p->p = params;
 	p->thread = malloc(sizeof(pthread_t));
 	p->display = malloc(sizeof(pthread_mutex_t));
-	p->meal = malloc(sizeof(pthread_mutex_t));
 	params->dead = 0;
 	if (p->thread == NULL)
 		return (-1);
@@ -108,6 +105,9 @@ int	main(int argc, char **argv)
 	int	i;
 
 	printf(B GRN "╔═══════════════════════════════════╗\n" NRM);
+		printf(B GRN"║ "B GRN"Time\t"NRM" Philo\t"
+			YEL"Action\t\t"GRN"    ║\n"NRM);
+	printf(B GRN "╠═══════════════════════════════════╣\n" NRM);
 	get_time();
 	params = init_params(argc, argv);
 	if (params == NULL || create_and_detach(params) == 0)
@@ -117,14 +117,14 @@ int	main(int argc, char **argv)
 		i = slayer(params, params->philos);
 		if (i == 1)
 		{
-			usleep(200);
+			usleep(100);
 			display(params->philos[0], 5);
 			break ;
 		}
 		else if (i == 2)
 		{
-			usleep(200);
-			display(params->philos[0], 6);
+			//display(params->philos[0], 6);
+			usleep(100);
 			break ;
 		}
 	}

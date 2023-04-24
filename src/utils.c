@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/21 16:22:01 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/24 11:31:56 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,23 @@ void	display(t_philo *p, int action)
 
 	i = get_time();
 	if (action == 1)
-		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+		printf(B GRN"║ "B GRN"%ld\t"NRM" %d\t"
 			YEL"has taken a fork"GRN"    ║\n"NRM, i, p->id);
 	else if (action == 2)
-		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+		printf(B GRN"║ "B GRN"%ld\t"NRM" %d\t"
 			CYN"is eating"GRN"           ║\n" NRM, i, p->id);
 	else if (action == 3)
-		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+		printf(B GRN"║ "B GRN"%ld\t"NRM" %d\t"
 			BLU "is thinking"GRN"         ║\n" NRM, i, p->id);
 	else if (action == 4)
-		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
+		printf(B GRN"║ "B GRN"%ld\t"NRM" %d\t"
 			MAG "is sleeping"GRN"         ║\n" NRM, i, p->id);
 	else if (action == 5)
 	{
-		printf(B GRN"║ "B RED"%ld\t"NRM" %d\t"
-			MAG "died"GRN"                ║\n" NRM, i, p->id);
+		printf(B GRN"║ "B GRN"%ld\t"NRM" %d\t"
+			RED "died"GRN"                ║\n" NRM, i, p->id);
 		printf(B GRN "╚═══════════════════════════════════╝\n" NRM);
 	}
 	else if (action == 6)
-		eaten();
+	eaten();
 }
