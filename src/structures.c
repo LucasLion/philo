@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:16:37 by llion             #+#    #+#             */
-/*   Updated: 2023/04/21 12:52:19 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/24 15:14:21 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_philo	**create_philos(int n, int id)
 		philos[i]->last_eat = get_time();
 		philos[i]->id = id;
 		philos[i]->times_eaten = 0;
+		philos[i]->is_eating = 0;
 		id++;
 		i++;
 	}

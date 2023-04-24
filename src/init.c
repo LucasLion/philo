@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:43:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/20 13:33:47 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/24 15:07:53 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	init_play(t_p *params, int argc, char **argv)
 		params->dead = 0;
 		params->nao_tem_fome = 0;
 		params->n_philos = ft_atoi(argv[1]);
+		if (params->n_philos == 0)
+			return (0);
 		params->time_to_die = ft_atoi(argv[2]);
 		params->time_to_eat = ft_atoi(argv[3]);
 		params->time_to_sleep = ft_atoi(argv[4]);

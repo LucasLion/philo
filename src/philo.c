@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:05:33 by llion             #+#    #+#             */
-/*   Updated: 2023/04/24 11:37:28 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/24 16:51:07 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,14 @@ int	create_threads(t_philo *p, t_p *params)
 
 int	slayer(t_p *p, t_philo **ph)
 {
-	long int	time;
 	int			i;
 
 	i = -1;
 	pthread_mutex_init(p->death, NULL);
-	while (++i < p->n_philos && !p->dead)
+	while (++i < p->n_philos && !p->dead && !ph[i]->is_eating)
 	{
-		i = 0;
 		pthread_mutex_lock(p->death);
-		time = get_time();
-		if (time - ph[i]->last_eat > p->time_to_die)
+		if (get_time() - ph[i]->last_eat > p->time_to_die)
 			p->dead = 1;
 		if (p->dead)
 			return (1);
@@ -98,36 +95,27 @@ int	create_and_detach(t_p *params)
 
 int	main(int argc, char **argv)
 {
-	// TODO segfault quand beaucoup de philosophes
-	// TODO il meurt en plein repas -> faire une varialbe (en train de manger ou pas)
-	// et check for death seulement quand on ne mange pas
 	t_p		*params;
-	int	i;
+	int		i;
 
-	printf(B GRN "╔═══════════════════════════════════╗\n" NRM);
-		printf(B GRN"║ "B GRN"Time\t"NRM" Philo\t"
-			YEL"Action\t\t"GRN"    ║\n"NRM);
-	printf(B GRN "╠═══════════════════════════════════╣\n" NRM);
 	get_time();
+	printf(B GRN "╔═══════════════════════════════════╗\n" NRM);
+	printf(B GRN"║ "B GRN"Time\t"NRM" Philo\t"YEL"Action\t\t"GRN"    ║\n"NRM);
+	printf(B GRN "╠═══════════════════════════════════╣\n" NRM);
 	params = init_params(argc, argv);
 	if (params == NULL || create_and_detach(params) == 0)
 		return (-1);
 	while (1)
 	{
 		i = slayer(params, params->philos);
-		if (i == 1)
-		{
-			usleep(100);
-			display(params->philos[0], 5);
+		if (i == 1 || i == 2)
 			break ;
-		}
-		else if (i == 2)
-		{
-			//display(params->philos[0], 6);
-			usleep(100);
-			break ;
-		}
 	}
+	usleep(10000);
+	if (i == 1)
+		display(params->philos[0], 5);
+	else if (i == 2)
+		display(params->philos[0], 6);
 	destroy_mutex_and_free(params);
 	return (0);
 }

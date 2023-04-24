@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 08:29:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/21 14:23:52 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/24 15:13:56 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				times_eaten;
+	int				is_eating;
 	long int		last_eat;
 	pthread_t		*thread;
 	pthread_mutex_t	*display;

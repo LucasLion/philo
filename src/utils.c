@@ -6,7 +6,7 @@
 /*   By: llion <llion@student.42mulhouse.fr >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:14:12 by llion             #+#    #+#             */
-/*   Updated: 2023/04/24 11:31:56 by llion            ###   ########.fr       */
+/*   Updated: 2023/04/24 15:05:12 by llion            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ void	display(t_philo *p, int action)
 	size_t	i;
 
 	i = get_time();
-	if (action == 1)
+	if (action == 6)
+		eaten();
+	else if (action == 1)
 		printf(B GRN"║ "B GRN"%ld\t"NRM" %d\t"
 			YEL"has taken a fork"GRN"    ║\n"NRM, i, p->id);
 	else if (action == 2)
@@ -82,6 +84,4 @@ void	display(t_philo *p, int action)
 			RED "died"GRN"                ║\n" NRM, i, p->id);
 		printf(B GRN "╚═══════════════════════════════════╝\n" NRM);
 	}
-	else if (action == 6)
-	eaten();
 }
